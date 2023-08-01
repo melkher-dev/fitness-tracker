@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use App\Http\Requests\UserDataStoreRequest;
 
 class UserDataController extends Controller
 {
@@ -20,13 +22,13 @@ class UserDataController extends Controller
      */
     public function create()
     {
-        //
+        return inertia('UserData/UserDataCreate');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserDataStoreRequest $request)
     {
         //
     }
@@ -61,5 +63,19 @@ class UserDataController extends Controller
     public function destroy(UserData $userData)
     {
         //
+    }
+
+    public function setCookie(Request $request)
+    {
+        $requestData = [
+            'height' => $request->input('height'),
+            'weight' => $request->input('weight'),
+            'sport_per_week' => $request->input('sport_per_week'),
+            'activity' => $request->input('activity'),
+            'food' => $request->input('food'),
+            'goal' => $request->input('goal'),
+            'allergy' => $request->input('allergy'),
+            'plan' => $request->input('plan'),
+        ];
     }
 }
